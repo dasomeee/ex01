@@ -1,0 +1,217 @@
+
+/*  남색 #2C3E50 민트색  #18BC9C 폰트 #666*/
+      @import url(https://cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
+      body{font-family: 'Nanum Square'; line-height: 150%; background-image: url("http://nrepeat93.cafe24.com/ex01/img/bg_img.jpg"); background-color: #2C3E50; color:#333;margin: 0;}
+    
+      #container {
+        width: 940px;
+        margin: 0px auto;
+        border-radius: 50px; 
+        font-size:14px;
+      }
+      #header {
+        padding: 0;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        text-align: center;    
+      }
+      #full_content {
+        width:100%;
+        padding: 10px 0px;
+        float: left;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;  
+      }
+      #content {
+        width:550px;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        float: left;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;  
+      }
+      #side_content {
+        width: 280px;
+        padding: 10px 30px;
+        margin-bottom: 10px;
+        float: right;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;
+        
+      }
+
+      #side_content ul{
+      	list-style: none;
+      	padding:0;	
+      }
+      #footer {
+      	font-size: 16px;
+        clear: both;
+        padding: 20px;
+        color:#eee;
+      }
+      #header p {
+        font-size:70pt; 
+        line-height: 70pt; 
+        font-weight: bold;
+        margin:5px 0px;
+        color:#fff;
+      }
+      .m_color{
+      	color: #2C3E50;
+      }
+      .title{
+      	opacity: 0.3;
+      }
+      .sub_title{
+      	margin:0;
+      	font-size:18px;
+      	padding:0;
+      }
+      .weather{
+        	width: 550px;
+        	margin-top:-20px;
+        	margin-bottom:-20px;
+        	opacity: 0;
+       }
+       .spinimage{
+		  -webkit-animation: spin 20s infinite linear;
+		  -o-animation: spin 20s infinite linear;
+		  -moz-animation: spin 20s infinite linear;
+		  animation: spin 20s infinite linear;
+		}
+		 
+		@-webkit-keyframes spin {
+		    0%  {-webkit-transform: rotate(0deg);}
+		    100% {-webkit-transform: rotate(360deg);}
+		}
+		 
+		@-moz-keyframes spin {
+		   0%  {-moz-transform: rotate(0deg);}
+		    100% {-moz-transform: rotate(360deg);}
+		}
+		@keyframes spin {
+		    0%  {transform: rotate(0deg);}
+		    100% {transform: rotate(360deg);}
+		}
+       .m_weather{
+        	width: 40px;
+        	margin-top:5px;
+        	
+       }
+       .w_table{
+       		width:100%;
+       		margin:15px 0;
+       		opacity: 0;
+       }
+       .w_table tr:nth-child(1){
+       		font-size: 13pt;
+       		color: #2C3E50;
+       		font-weight: 600;
+       }
+       table td{
+       		padding:5px 3px;
+       	
+       }
+       .wv_table{
+       	opacity: 0;
+       		width:100%;
+       		margin:15px 0;
+       }
+       .w_txt{opacity: 0;}
+       .wv_table tr td:nth-child(1){
+       		font-size: 13pt;
+       		color: #2C3E50;
+       		font-weight: 600;
+       }
+       .w_table.wv_table 
+       {
+       	text-align: left;
+       	padding:0px 20px;
+       }
+       .w_table.wv_table td{
+       	padding: 10px;
+       }
+       .w_table.wv_table tr td {
+       	border-bottom: 1px solid #999;
+       } 
+       #full_content > div > table > tbody > tr:nth-child(2) >td ,#full_content > div > table > tbody > tr:nth-child(6) >td
+      {
+        font-size: 12pt;
+        padding-top:3px;
+        padding-bottom: 3px;
+        background-color: #ddd;
+       }
+       .sm_table tr:nth-child(1) td{
+        border-bottom: 1px solid #999;
+       }
+       .sm_table tr:nth-child(4) td{
+        border-bottom: 1px solid #999;
+       }
+       .sm_table tr td:nth-child(1){
+       	text-align: left;
+       }
+       .sm_table tr td:nth-child(2){
+       	text-align:right;
+       }
+      .fs12{	font-size: 12px; }
+      .fs18{	font-size: 18px; }
+      .fs24{	font-size: 24px; }
+      .fs32{	font-size: 32px; }
+      .fs36{	font-size: 36px; }
+      .bold{	font-weight: 600;}
+
+      .pd0{    	padding-bottom:0; }
+      .pd10{ 	padding-bottom:10; }
+      .mg0{		margin-bottom:0; }
+      .mg5{		margin-bottom:5px; }
+      .mg10{ 	margin-bottom:10; } 
+
+      @media screen and (max-width:940px) {
+        #container {
+          width: 100%; 
+        }
+        #full_content 
+        {
+          float: none;
+          width: auto;
+          margin: 10px;
+          
+        }
+        #content {
+          float: none;
+          width: auto;
+          margin: 10px;
+          
+        }
+        #side_content {
+          float: none;
+          width: auto;
+           margin: 10px ;
+        }
+        #header p{
+         font-size:50pt;
+         margin:5px 0px;
+         line-height: 50pt;    
+        }
+        .weather{
+        	width: 100%;
+        	margin-top:-10px;
+        	margin-bottom:-10px;
+        }
+        .w_table.wv_table td{
+       	padding: 10px 0px;
+       }
+      }
+     @media screen and (max-width:375px) {
+        #footer{font-size: 12px;}
+        .fs36{ font-size: 32px; }
+        .sub_title.title{ font-style: 14px;}
+        .w_table tr:nth-child(1) {font-size: 11pt;}
+        .wv_table tr td:nth-child(1) {font-size: 11pt;}        
+      }
+    

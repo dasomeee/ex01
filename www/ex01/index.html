@@ -1,0 +1,612 @@
+
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <title>TODAY WEATHER</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+	<script> 
+
+	$(document).ready(function(){
+	        var tbl = $("p.title");
+	        tbl.animate({ opacity: '1'}, { duration: 1000});
+	         var img = $("img.weather");
+	        img.animate({ opacity: '1'}, { duration: 1500});
+	        var con = $("table.w_table, table.wv_table, p.w_txt");
+	        con.animate({ opacity: '1'}, { duration: 2000});
+	        	        
+	});
+  
+	</script> 
+<style>
+
+/*  남색 #2C3E50 민트색  #18BC9C 폰트 #666*/
+      @import url(https://cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
+      body{font-family: 'Nanum Square'; line-height: 150%; background-image: url("http://nrepeat93.cafe24.com/ex01/img/bg_img.jpg"); background-color: #2C3E50; color:#333;margin: 0;}
+    
+      #container {
+        width: 940px;
+        margin: 0px auto;
+        border-radius: 50px; 
+        font-size:14px;
+      }
+      #header {
+        padding: 0;
+        margin: 0 auto;
+        margin-bottom: 10px;
+        text-align: center;    
+      }
+      #full_content {
+        width:100%;
+        padding: 10px 0px;
+        float: left;
+        margin-bottom: 10px;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;  
+      }
+      #content {
+        width:550px;
+        padding: 10px 20px;
+        margin-bottom: 10px;
+        float: left;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;  
+      }
+      #side_content {
+        width: 280px;
+        padding: 10px 30px;
+        margin-bottom: 10px;
+        float: right;
+        border-radius: 20px;
+        background-color:rgba(255, 255, 255, 0.6);
+        text-align: center;
+        
+      }
+
+      #side_content ul{
+        list-style: none;
+        padding:0;  
+      }
+      #footer {
+        font-size: 16px;
+        clear: both;
+        padding: 20px;
+        color:#eee;
+      }
+      #header p {
+        font-size:70pt; 
+        line-height: 70pt; 
+        font-weight: bold;
+        margin:5px 0px;
+        color:#fff;
+      }
+      .m_color{
+        color: #2C3E50;
+      }
+      .title{
+        opacity: 0.3;
+      }
+      .sub_title{
+        margin:0;
+        font-size:18px;
+        padding:0;
+      }
+      .weather{
+          width: 550px;
+          margin-top:-20px;
+          margin-bottom:-20px;
+          opacity: 0;
+       }
+       /*image spin*/
+       .spinimage{
+        -webkit-animation: spin 20s infinite linear;
+        -o-animation: spin 20s infinite linear;
+        -moz-animation: spin 20s infinite linear;
+        animation: spin 20s infinite linear;
+      }
+      
+      @-webkit-keyframes spin {
+          0%  {-webkit-transform: rotate(0deg);}
+          100% {-webkit-transform: rotate(360deg);}
+      }
+       
+      @-moz-keyframes spin {
+         0%  {-moz-transform: rotate(0deg);}
+          100% {-moz-transform: rotate(360deg);}
+      }
+      @keyframes spin {
+          0%  {transform: rotate(0deg);}
+          100% {transform: rotate(360deg);}
+      }
+
+       .m_weather{
+          width: 40px;
+          margin-top:5px;
+          
+       }
+       .w_table{
+          width:100%;
+          margin:15px 0;
+          opacity: 0;
+       }
+       .w_table tr:nth-child(1){
+          font-size: 13pt;
+          color: #2C3E50;
+          font-weight: 600;
+       }
+       table td{
+          padding:5px 3px;
+        
+       }
+       .wv_table{
+        opacity: 0;
+          width:100%;
+          margin:15px 0;
+       }
+       .w_txt{opacity: 0;}
+       .wv_table tr td:nth-child(1){
+          font-size: 13pt;
+          color: #2C3E50;
+          font-weight: 600;
+       }
+       .w_table.wv_table 
+       {
+        text-align: left;
+        padding:0px 20px;
+       }
+       .w_table.wv_table td{
+        padding: 10px;
+       }
+       .w_table.wv_table tr td {
+        border-bottom: 1px solid #999;
+       }
+       .w_table.wv_table tr:nth-child(2) ,.w_table.wv_table tr:nth-child(6){
+          background-color: #ddd;
+        }
+       .sm_table tr:nth-child(1) {
+        text-align: center;
+       }
+       .sm_table tr:nth-child(4) td{
+        border-bottom: 1px solid #999;
+       }
+       .sm_table tr td:nth-child(1){
+        text-align:left;
+       }
+       .sm_table tr td:nth-child(2){
+        text-align: left;
+       }
+       .sm_table tr td:nth-child(2){
+        text-align:right;
+       }
+
+       .sm_table tr td.moon{text-align: center; height: 195px;}
+      .fs12{  font-size: 12px; }
+      .fs18{  font-size: 18px; }
+      .fs24{  font-size: 24px; }
+      .fs32{  font-size: 32px; }
+      .fs36{  font-size: 36px; }
+      .bold{  font-weight: 600;}
+
+      .pd0{     padding-bottom:0; }
+      .pd10{  padding-bottom:10; }
+      .mg0{   margin-bottom:0; }
+      .mg5{   margin-bottom:5px; }
+      .mg10{  margin-bottom:10; } 
+
+      @media screen and (max-width:940px) {
+        #container {
+          width: 100%; 
+        }
+        #full_content 
+        {
+          float: none;
+          width: auto;
+          margin: 10px;
+          
+        }
+        #content {
+          float: none;
+          width: auto;
+          margin: 10px;
+          
+        }
+        #side_content {
+          float: none;
+          width: auto;
+           margin: 10px ;
+        }
+        #header p{
+         font-size:50pt;
+         margin:5px 0px;
+         line-height: 50pt;    
+        }
+        .weather{
+          width: 100%;
+          margin-top:-10px;
+          margin-bottom:-10px;
+        }
+        .w_table.wv_table td{
+        padding: 10px 0px;
+       }
+      }
+     @media screen and (max-width:375px) {
+        #footer{font-size: 12px;}
+        .fs36{ font-size: 32px; }
+        .sub_title.title{ font-style: 14px;}
+        .w_table tr:nth-child(1) {font-size: 11pt;}
+        .wv_table tr td:nth-child(1) {font-size: 11pt;}        
+      }
+
+</style>
+  </head>
+  <body>
+    <div id="container">
+      <div id="header">
+        <div><p>TODAY<br>WEATHER</p></div>
+      </div>
+      <div id="content" class="op1">
+        <div>
+        <p class="fs36 bold mg5 m_color title">서울</p>
+        <p class="sub_title bold m_color title">청명함</p> 
+        <img class="weather spinimage" src="http://nrepeat93.cafe24.com/ex01/img/w_sun.png" > 
+        <p class="w_txt">현재 기온은 청명함. 현재 기온은 -4℃이며 오늘 최고 예상 기온은 -2입니다.</p>
+        </div>
+      </div>
+      
+      <div id="side_content">
+     	<p class="fs24 bold m_color title">지금</p>
+     	<table class="w_table ">
+     	<colgroup>
+     		<col width="20%">
+     		<col width="20%">
+     		<col width="20%">
+     		<col width="20%">
+     		<col width="20%">
+     	</colgroup>
+     	<tr class="bold">
+     	<td>바람</td>
+     	<td>습도</td>
+     	<td>이슬점</td>
+     	<td>기압</td>
+     	<td>시정</td>
+     	</tr>
+     	<tr>
+     	<td>서북서 5 km/h</td>
+     	<td>52%</td>
+     	<td>-15°</td>
+     	<td>1034.9 MB </td>
+     	<td>9.7 km</td>
+     	</tr>
+     	</table>
+      </div>
+      <div id="side_content">
+      <p class="fs24 bold m_color title">이번주 날씨</p>
+      <table class="wv_table">
+      <colgroup>
+      	<col width="20%">
+      	<col width=="15%">
+      	<col width=="40%">
+      	<col width=="25%">
+
+      </colgroup>
+      	<tr>
+       	 <td>화요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_rainDrop.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>수요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_sun.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>목요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_snow.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>금요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_umbrella.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>토요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_wind.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>일요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_rainbow.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+        <tr>
+       	 <td>월요일</td>
+       	 <td><img class="m_weather" src="http://nrepeat93.cafe24.com/ex01/img/mw_sun.png" > </td>
+       	 <td>6</td>
+       	 <td>-4</td>
+        </tr>
+    </table>
+      </div>
+      <div id="content" >
+      <p class="fs24 bold m_color title">시간별 날씨</p>
+      <div style="overflow: auto;margin-top:-10px;">
+      <table class="w_table "    >
+      <tr>
+          <td>
+             20:00
+          </td>
+          <td>
+             21:00
+          </td>
+          <td>
+             22:00
+          </td>
+          <td>
+             23:00
+          </td>
+          <td>
+             24:00
+          </td>
+          <td>
+             25:00
+          </td>
+          <td>
+             01:00
+          </td>
+          <td>
+             02:00
+          </td>
+          <td>
+             03:00
+          </td>
+          <td>
+             04:00
+          </td>
+          <td>
+             05:00
+          </td>
+          <td>
+             06:00
+          </td>
+          <td>
+             07:00
+          </td>
+          <td>
+             08:00
+          </td>
+
+
+         </tr>
+         <tr>
+          <td>
+            <span>-5</span>°
+          </td>
+          <td>
+            <span>-6</span>°
+          </td>
+          <td>
+            <span>-7</span>°
+          </td>
+          <td>
+            <span>-8</span>°
+          </td>
+          <td>
+            <span>-9</span>°
+          </td>
+          <td>
+            <span>-5</span>°
+          </td>
+          <td>
+            <span>-6</span>°
+          </td>
+          <td>
+            <span>-7</span>°
+          </td>
+          <td>
+            <span>-8</span>°
+          </td>
+          <td>
+            <span>-9</span>°
+          </td>
+            <td>
+            <span>-6</span>°
+          </td>
+          <td>
+            <span>-7</span>°
+          </td>
+          <td>
+            <span>-8</span>°
+          </td>
+          <td>
+            <span>-9</span>°
+          </td>
+          
+          </tr>
+          
+        </tr>
+
+       
+      </table>
+      </div>
+      </div>
+
+        <div id="side_content" class="op5">
+        <p class="fs24 bold m_color title">날씨 정보</p>
+        <table class="wv_table">
+        	<tr>
+        	<td>일출</td>
+        	<td>오전 7:42</td>
+        	</tr>
+        	<tr>
+        	<td>일몰</td>
+        	<td>오후 5:48</td>
+        	</tr>
+        	<tr>
+        	<td>눈 올 확률</td>
+        	<td>0%</td>
+        	</tr>
+        	<tr>
+        	<td>습도</td>
+        	<td>40%</td>
+        	</tr>
+        	<tr>
+        	<td>바람</td>
+        	<td>서북서 초속 2m</td>
+        	</tr>
+        	<tr>
+        	<td>체감</td>
+        	<td>-7℃</td>
+        	</tr>
+        	<tr>
+        	<td>강수량</td>
+        	<td>0cm</td>
+        	</tr>
+        	<tr>
+        	<td>기압</td>
+        	<td>1033hPa</td>
+        	</tr>
+        	<tr>
+        	<td>시정</td>
+        	<td>9.7km</td>
+        	</tr>
+        	<tr>
+        	<td>자외선 지수</td>
+        	<td>0</td>
+        	</tr>
+
+        </table>
+        
+      </div>
+
+      <div id="content" class="op5">
+        <p class="fs24 bold m_color title">해와 달</p>
+        <table class="wv_table sm_table">
+          <tr>
+          
+          </tr>
+        	<tr>
+        	<td rowspan="8" class="moon"><img  src="http://nrepeat93.cafe24.com/ex01/img/01.png"></td>
+        
+        	</tr>
+        	<tr>
+        	<td>일출</td>
+        	<td>07:34</td>
+        	</tr>
+        	<tr>
+        	<td>태양 정오</td>
+        	<td>12:46</td>
+        	</tr>
+        	<tr>
+        	<td>일몰</td>
+        	<td>17:56</td>
+        	</tr>
+        	<tr></tr>
+        	<tr>
+        	<td>월출</td>
+        	<td>10:38</td>
+        	</tr>
+        	<tr>
+        	<td>월몰</td>
+        	<td>23:28</td>
+        	</tr>
+
+        </table>
+        
+      </div>
+      <div id="full_content"> 
+      <p class="fs24 bold m_color title">주말 날씨</p>
+      <div style="overflow: auto;margin-top:-10px;">
+      <table class="wv_table w_table">
+      <colgroup>
+      	<col width="15%">
+      	<col width=="15%">
+      	<col width=="15%">
+      	<col width=="10%">
+      	<col width=="15%">
+      	<col width=="20%">
+      </colgroup>
+      	<tr>
+       	 <td>낮</td>
+       	 <td>최고기온/최저기온</td>
+       	 <td>설명</td>
+       	 <td>강수량</td>
+       	 <td>바람</td>
+       	 <td>습도</td>
+        </tr>
+        <tr>
+       	 <td colspan="6">이번 주말, 1월 14일</td>
+        </tr>
+        <tr>
+       	 <td>금 <span>1월 13일</span></td>
+       	 <td>6 / -5</td>
+       	 <td>대체로 화창</td>
+       	 <td>10%</td>
+       	 <td>서남서 11km/h</td>
+       	 <td>67%</td>
+        </tr>
+        <tr>
+       	 <td>토  <span>1월 14일</span></td>
+       	 <td>6 / -1</td>
+       	 <td>대체로 흐림</td>
+       	 <td>20%</td>
+       	 <td>남남동 5km/h</td>
+       	 <td>66%</td>
+        </tr>
+        <tr>
+       	 <td>일  <span>1월 15일</span></td>
+       	 <td>5 / -7</td>
+       	 <td>오전 구름 / 오후 화창</td>
+       	 <td>20%</td>
+       	 <td>서북서 21km/h</td>
+       	 <td>72%</td>
+        </tr>
+        <tr>
+       	 <td colspan="6" >다음 주말, 1월 21일</td>
+        </tr>
+        <tr>
+       	 <td>금  <span>1월 20일</span></td>
+       	 <td>1 / -9</td>
+       	 <td>화창</td>
+       	 <td>0%</td>
+       	 <td>북서 21km/h</td>
+       	 <td>38%</td>
+        </tr>
+        <tr>
+       	 <td>토  <span>1월 21일</span></td>
+       	 <td>0 / -9</td>
+       	 <td>화창</td>
+       	 <td>0%</td>
+       	 <td>서북서 17km/h</td>
+       	 <td>36%</td>
+        </tr>
+        <tr>
+       	 <td>일  <span>1월 22일</span></td>
+       	 <td>1 / -8</td>
+       	 <td>화창</td>
+       	 <td>0%</td>
+       	 <td>서북서 14km/h</td>
+       	 <td>32%</td>
+        </tr>
+        
+    </table>
+      </div>
+      </div>
+      <div id="footer">
+        <p>피드백  |  날씨 API  |  프레스
+		<br>서비스 계약  |  개인정보 취급방침  |  접근성  © 2016 TODAY WEATHER</p>
+      </div>
+    </div>
+
+  </body>
+</html>

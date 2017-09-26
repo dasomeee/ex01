@@ -1,0 +1,359 @@
+﻿<!--
+    Winhweel.js one image per segment wheel example by Douglas McKechie @ www.dougtesting.net
+    See website for tutorials and other documentation.
+    
+    The MIT License (MIT)
+
+    Copyright (c) 2016 Douglas McKechie
+
+    Permission is hereby granted, free of charge, to any person obtaining a copy
+    of this software and associated documentation files (the "Software"), to deal
+    in the Software without restriction, including without limitation the rights
+    to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+    copies of the Software, and to permit persons to whom the Software is
+    furnished to do so, subject to the following conditions:
+
+    The above copyright notice and this permission notice shall be included in all
+    copies or substantial portions of the Software.
+
+    THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+    IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+    FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+    AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+    LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+    OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+    SOFTWARE.
+-->
+<html>
+    <head>
+        <title>행운의 룰렛</title>
+        <link rel="stylesheet" href="main.css" type="text/css" />
+        <link rel="stylesheet" href="//cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css">
+        <script type="text/javascript" src="http://nrepeat93.cafe24.com/ex03/js/Winwheel.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+    </head>
+
+    <style>
+      @import url(https://cdn.rawgit.com/hiun/NanumSquare/master/nanumsquare.css);
+      body{font-family: 'Nanum Square'; }
+      html{ background-color: #eee;}
+      div.title
+        {
+
+        width:100%;
+        height: 320px;
+         background-image: url(./bgc-2.png);
+         background-position: center;
+         background-repeat: no-repeat;
+
+        }
+    .content{
+        padding:50px 0;
+
+     }
+         div.power_controls{ margin-top: 32px;}
+      .power_controls tr{}
+      .power{ background-color:#fff;width:500px; margin: 0 auto; text-align: center;}
+      .power div{
+        font-size: 10pt; font-weight: bold;
+        width:100px; 
+        padding:30px 28px; 
+        margin:0 auto; 
+        cursor: pointer;
+        display: inline-block;
+        border: 5px solid #663399; 
+        }
+      .power div:nth-child(1){border-top-left-radius: 10px;border-bottom-left-radius: 10px;margin-right:-8px;}
+    
+       .power div:nth-child(3){border-top-right-radius: 10px;border-bottom-right-radius: 10px;margin-left:-8px;}
+      .btns{
+        width:360px;
+        margin: 42 auto;
+      }
+      .reset_btn{
+        font-weight: bold;
+        margin: 0 auto; 
+        padding:10px 20px; 
+        color: #fff;
+        background-color: #663399; 
+        cursor: pointer; 
+       font-size: 10pt; 
+        border-radius: 30px;
+        width:130px; 
+        display: inline-block; 
+        text-align: center;
+         border-bottom:5px solid #330033;}
+        .reset_btn:hover{
+            opacity: 0.5; 
+        }
+      .spin_btn{
+        font-size: 10pt; 
+        font-weight: bold;
+        margin: 0 auto; 
+        padding:10px 20px; 
+        background-color: #ccc;  
+         border:3px solid #ccc;
+        border-radius: 30px;
+        width:130px; 
+        display: inline-block; 
+        text-align: center;}
+      .spin_btn_click{
+        font-size: 10pt; 
+        font-weight: bold;
+        margin: 0 auto; 
+        padding:10px 20px; 
+        color:#330033;
+        background-color: #fff;
+        cursor: pointer; 
+        border-bottom:5px solid #663399;
+
+        border-radius: 30px;
+        width:130px; 
+        display: inline-block; 
+        text-align: center;}
+        .spin_btn_click:hover{
+            opacity: 0.8;
+        }
+        div.pw1{ background-color: #663399; color:#fff; }
+        div.pw2{  background-color: #330066; border: 5px solid #330066; color:#fff;}
+        div.pw3 { background-color: #330033;  border: 5px solid #330033; color:#fff;}
+        p.tip{font-size: 10pt; font-weight: 600; padding-bottom:20px; color:#333;
+            border-bottom:3px dotted #663399; width:320px; margin-bottom:10px;margin-top:-30px;}
+       
+        p.step{
+            text-align: center;
+            font-size: 15px;
+            padding:10px 5px;
+            margin: 30px;
+            width:25px;
+            margin: 20 auto;
+            color: #fff;
+            font-weight: bold;
+            background-color: #333;
+            border-radius: 50px;
+            
+
+        }
+        .r_tbl{
+            margin-top:30px;
+            font-size: 10pt;
+            font-weight: bold;
+        }
+        .r_tbl tr {
+            background-color: #fff;
+            }
+        .r_tbl th{
+            background-color: #663399;
+            color: #fff;
+            padding: 10px;
+        }
+        .r_tbl td{
+            background-color: #fff;
+            color: #333;
+            padding: 10px 60px;
+            text-align: center;
+        }
+        .bottom_content{   
+            color: #333;
+            background-color: #fff;
+            padding: 30px 400px ;
+            margin-top:100px;
+            text-align: left;
+            line-height: 13pt;
+            font-size: 10pt;
+            font-weight: bold;
+
+        }
+      </style>
+    <body>
+    <div class="title"> </div>
+        <div class="content"   align="center">
+ 
+           <p class="tip">POWER를 먼저 선택하고 버튼을 누르세요.</p>
+            <table cellpadding="0" cellspacing="0" border="0">
+             <tr>
+                <td>
+                    <p class="step">1</p>
+                    <div class="power_controls">
+                        
+                        <div class="power">
+                            <div  id="pw1" onClick="powerSelected(1);">약함</div>
+                            <div  id="pw2" onClick="powerSelected(2);">중간</div>
+                            <div  id="pw3" onClick="powerSelected(3);">강함</div>
+                        </div>
+                        <br />
+                    <p class="step">2</p>
+                     <div class="btns">
+                        <div class="spin_btn" id="spin_button" src="spin_off.png" alt="Spin" onClick="startSpin();" >돌리기</div>
+                        <div class="reset_btn"  onClick="resetWheel(); return false;">다시 돌리기(reset)</div>
+                        </div>
+                    </div>   
+                </td>
+                
+            </tr>
+
+            <tr >
+             
+                <td width="421" height="600" class="the_wheel" align="center" valign="center">
+                    <div ><canvas  id="canvas" width="500" height="500">
+                        <p style="{color: white}" align="center">Sorry, your browser doesn't support canvas. Please try another.</p>
+                    </canvas>
+                    </div>
+                </td>
+            </tr>
+            
+        </table>
+        <p class="tip"></p>
+        <table class="r_tbl">
+            <tr><th>당첨자</th><th>상품이름</th><th>당첨시간</th><th>휴대폰번호</th></tr>
+            <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+             <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+             <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+             <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+             <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+             <tr><td>당첨자</td><td>스타벅스</td><td>150309 11:02:00</td><td>010-0000-0000</td></tr>
+           
+        </table>
+        <div class="bottom_content">
+            1. 네이버 나눔글꼴의 지적 재산권은 네이버와 네이버문화재단에 있습니다.  <br> 
+            네이버 나눔글꼴은 개인 및 기업 사용자를 포함한 모든 사용자에게  무료로 제공되며 자유롭게 수정하고 재배포하실 수 있습니다. <br><br>   
+            2. 글꼴 자체를 유료로 판매하는 것은 금지하며 네이버 나눔글꼴은 본 저작권 안내와 라이선스 전문을 포함해서 다른 소프트웨어와 번들하거나 재배포 또는 판매가 가능합니다. <br>  <br>
+            3. 네이버 나눔글꼴 라이선스 전문을 포함하기 어려울 경우, 나눔글꼴의 출처 표기를 권장합니다.   예) 이 페이지에는 네이버에서 제공한 나눔글꼴이 적용되어 있습니다.  <br><br>
+            4. 네이버 나눔글꼴을 사용한 인쇄물, 광고물(온라인 포함)의 이미지는 나눔글꼴 프로모션을 위해 활용될 수 있습니다.   이를 원치 않는 사용자는 언제든지 당사에 요청하실 수 있습니다. 정확한 사용 조건은 아래 네이버 나눔글꼴 라이선스 전문을 참고하시기 바랍니다 
+            <br><br><br>
+Copyright © 
+
+        </div>
+        <script>        
+            // Create new wheel object specifying the parameters at creation time.
+            var theWheel = new Winwheel({
+                'numSegments'       : 8,                 // Specify number of segments.
+                'outerRadius'       : 200,               // Set outer radius so wheel fits inside the background.
+                'drawText'          : false,              // Code drawn text can be used with segment images.
+                'drawMode'          : 'segmentImage',    // Must be segmentImage to draw wheel using one image per segemnt.
+                'segments'          :                    // Define segments including image and text.
+                [
+                   {'image' : '01.png',  'text' : '블루투스 스피커'},
+                   {'image' : '02.png',  'text' : 'CGV 영화관람권'},
+                   {'image' : '03.png', 'text' : '굽네치킨 볼케이노 교환권'},
+                   {'image' : '04.png',   'text' : '스타벅스 아메리카노'},
+                   {'image' : '05.png',  'text' : 'CU 5000원 교환권'},  
+                   {'image' : '06.png', 'text' : '해피머니 1000원권'},
+                   {'image' : '07.png',  'text' : '핫팩 교환권'},
+                   {'image' : '08.png', 'text' : '츄파춥스 교환권'}
+                ],
+                'animation' :           // Specify the animation to use.
+                {
+                    'type'     : 'spinToStop',
+                    'duration' : 5,     // Duration in seconds.
+                    'spins'    : 8,     // Number of complete spins.
+                    'callbackFinished' : 'alertPrize()'
+                }
+            });
+            
+            // Vars used by the code in this page to do power controls.
+            var wheelPower    = 0;
+            var wheelSpinning = false;
+            
+            // -------------------------------------------------------
+            // Function to handle the onClick on the power buttons.
+            // -------------------------------------------------------
+            function powerSelected(powerLevel)
+            {
+                // Ensure that power can't be changed while wheel is spinning.
+                if (wheelSpinning == false)
+                {
+                    document.getElementById('pw1').className = "";
+                    document.getElementById('pw2').className = "";
+                    document.getElementById('pw3').className = "";
+                    // Now light up all cells below-and-including the one selected by changing the class.
+                    if (powerLevel >= 1)
+                    {
+                        document.getElementById('pw1').className += "pw1";
+                    }
+                        
+                    if (powerLevel >= 2)
+                    {
+                        document.getElementById('pw2').className += "pw2";
+                    }
+                        
+                    if (powerLevel >= 3)
+                    {
+                        document.getElementById('pw3').className += "pw3";
+                    }
+                    
+                    // Set wheelPower var used when spin button is clicked.
+                    wheelPower = powerLevel;
+                    
+                    // Light up the spin button by changing it's source image and adding a clickable class to it.
+                
+                    document.getElementById('spin_button').className = "spin_btn_click";
+                }
+            }
+            
+            // -------------------------------------------------------
+            // Click handler for spin button.
+            // -------------------------------------------------------
+            function startSpin()
+            {
+                // Ensure that spinning can't be clicked again while already running.
+                if (wheelSpinning == false)
+                {
+                    // Based on the power level selected adjust the number of spins for the wheel, the more times is has
+                    // to rotate with the duration of the animation the quicker the wheel spins.
+                    if (wheelPower == 1)
+                    {
+                        theWheel.animation.spins = 3;
+                    }
+                    else if (wheelPower == 2)
+                    {
+                        theWheel.animation.spins = 8;
+                    }
+                    else if (wheelPower == 3)
+                    {
+                        theWheel.animation.spins = 15;
+                    }
+                    
+                    // Disable the spin button so can't click again while wheel is spinning.
+                    document.getElementById('spin_button').src       = "spin_off.png";
+                    document.getElementById('spin_button').className = "spin_btn_click";
+                    
+                    // Begin the spin animation by calling startAnimation on the wheel object.
+                    theWheel.startAnimation();
+                    
+                    // Set to true so that power can't be changed and spin button re-enabled during
+                    // the current animation. The user will have to reset before spinning again.
+                    wheelSpinning = true;
+                }
+            }
+            
+            // -------------------------------------------------------
+            // Function for reset button.
+            // -------------------------------------------------------
+            function resetWheel()
+            {
+                theWheel.stopAnimation(false);  // Stop the animation, false as param so does not call callback function.
+                theWheel.rotationAngle = 0;     // Re-set the wheel angle to 0 degrees.
+                theWheel.draw();                // Call draw to render changes to the wheel.
+                
+                document.getElementById('pw1').className = "";  // Remove all colours from the power level indicators.
+                document.getElementById('pw2').className = "";
+                document.getElementById('pw3').className = "";
+                
+                wheelSpinning = false;          // Reset to false to power buttons and spin can be clicked again.
+            }
+            
+            // -------------------------------------------------------
+            // Called when the spin animation has finished by the callback feature of the wheel because I specified callback in the parameters.
+            // -------------------------------------------------------
+            function alertPrize()
+            {
+                // Get the segment indicated by the pointer on the wheel background which is at 0 degrees.
+                var winningSegment = theWheel.getIndicatedSegment();
+                
+                // Do basic alert of the segment text. You would probably want to do something more interesting with this information.
+                alert('축하합니다! "'+winningSegment.text + '" 에 당첨되셨습니다!');
+            }
+        </script>
+    </body>
+</html>

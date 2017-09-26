@@ -1,0 +1,62 @@
+/*
+Description:
+    Contains all the styles for the winning wheel page.
+    
+Verison History:
+    2012-01-28, Douglas McKechie
+    - Created based off earlier version.
+    
+    2015-09-26, Douglas McKechie
+    - Minor updates for the 2.0 winwheel example.
+*/
+
+/* Sets the background image for the wheel */
+td.the_wheel
+{
+    background-image: url(./wheel_white.png);
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+/* Do some css reset on selected elements */
+h1, p
+{
+    margin: 0;
+}
+
+
+
+div.html5_logo
+{
+    margin-left:70px;
+}
+
+/* Styles for the power selection controls */
+
+
+div.pw1
+{
+    background-color: #eee;
+}
+
+div.pw2
+{
+    background-color: #ccc;
+}
+
+div.pw3
+{
+    background-color: #aaa;
+}
+
+/* Style applied to the spin button once a power has been selected */
+.clickable
+{
+    cursor: pointer;
+}
+
+/* Other misc styles */
+.margin_bottom
+{
+    margin-bottom: 5px;
+}
